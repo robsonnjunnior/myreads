@@ -28,14 +28,14 @@ export default class BookShelf extends Component {
   handleSelectMoveBooks = (bookChanged, to) => {
     console.log(bookChanged, to)
 
-    /*     this.setState((currentState) => ({
+    /*this.setState((currentState) => ({
       books: currentState.books.map( book => {
         if(book.title === bookChanged.title){
           book = {...book, shelf : to}
         }
       }) 
-    }))  */
-  }
+    }))*/
+ }
 
   render() {
     return (
