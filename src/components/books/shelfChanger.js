@@ -8,9 +8,7 @@ export default class shelfChanger extends Component {
   }
 
   render() {
-
     const { book } = this.props
-
     return (
       <div className="book-shelf-changer">
       <select key={book.title} value={book.shelf} onChange={this.handleChange}>
