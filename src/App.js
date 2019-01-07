@@ -25,7 +25,7 @@ export default class App extends React.Component {
       })
   }
 
-  handleSelectMoveBooks = (bookChanged, to) => {
+  handleSelectMoveBooks = (bookChanged, to) => {  
 
     if(!this.state.books.find((value) => value.id === bookChanged.id)){
       bookChanged.shelf = to

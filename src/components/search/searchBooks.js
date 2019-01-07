@@ -16,9 +16,15 @@ export default class SearchBooks extends Component {
     if(e.target.value){
       BooksAPI.search(`${e.target.value}`)
       .then((booksSearch) =>{
-        this.setState(() => ({
-          booksSearch
-        }))
+        if(booksSearch.length){
+          this.setState(() => ({
+            booksSearch
+          }))
+        }else {
+          this.setState(() => ({
+            booksSearch: []
+          }))
+        }
       })
     } else{
       this.setState({

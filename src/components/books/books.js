@@ -18,13 +18,13 @@ export default class books extends Component {
     : imageNotAvailable;
 
     if (typeof this.props.booksOnShelfs !== 'undefined'){
-      const bookShelf = this.getShelfOfBookOnShelf(book.id)
-
-      if(bookShelf.length !== 0){
-        book.shelf = bookShelf[0].shelf
-      }else {
-        book.shelf = 'none'
-      }
+        const bookShelf = this.getShelfOfBookOnShelf(book.id)
+  
+        if(bookShelf.length !== 0){
+          book.shelf = bookShelf[0].shelf
+        }else {
+          book.shelf = 'none'
+        }
     }
   
     return(
