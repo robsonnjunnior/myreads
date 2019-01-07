@@ -1,36 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Shelf from '../shelf/shelf'
-import * as BooksAPI from '../../BooksAPI'
 
 export default class BookShelf extends Component {
-
-  constructor(props){
-    super(props)
-    this.state = {
-      books: []
-    }
-  }
-
-  componentDidMount(){
-    BooksAPI.getAll()
-      .then((books) =>{
-        this.setState(() => ({
-          books
-        }))
-      })
-  }
   
   getBooksByShelf(shelf){
-    return this.state.books.filter((book)=> book.shelf === shelf)
-  }
-  
-  handleSelectMoveBooks = (bookChanged, to) => {
-      this.setState((currentState) => ({
-        books : currentState.books.map(book => book.id === bookChanged.id ? ({...book, shelf: to}): book)
-      }))
-      
-      BooksAPI.update(bookChanged, to)
+    return this.props.books.filter((book)=> book.shelf === shelf)
   }
 
   render() {
@@ -45,17 +20,17 @@ export default class BookShelf extends Component {
                 <Shelf 
                   title={'Currently Reading'}
                   booksOfShelf={this.getBooksByShelf('currentlyReading')}
-                  moveBooks ={ this.handleSelectMoveBooks }
+                  moveBooks ={ this.props.moveBooks }
                   />
                 <Shelf 
                   title={'Want to Read'} 
                   booksOfShelf={this.getBooksByShelf('wantToRead')}
-                  moveBooks ={ this.handleSelectMoveBooks }
+                  moveBooks ={ this.props.moveBooks }
                   />
                 <Shelf 
                   title={'Read'} 
                   booksOfShelf={this.getBooksByShelf('read')}
-                  moveBooks ={ this.handleSelectMoveBooks }
+                  moveBooks ={ this.props.moveBooks }
                   />
               </div>
             </div>
