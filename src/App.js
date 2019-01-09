@@ -16,8 +16,8 @@ export default class App extends React.Component {
     }
   }
 
-  componentDidMount(){
-    BooksAPI.getAll()
+  async componentDidMount(){
+    await BooksAPI.getAll()
       .then((books) =>{
         this.setState(() => ({
           books
@@ -25,8 +25,7 @@ export default class App extends React.Component {
       })
   }
 
-  handleSelectMoveBooks = (bookChanged, to) => {  
-
+  handleSelectMoveBooks = (bookChanged, to) => {
     if(!this.state.books.find((value) => value.id === bookChanged.id)){
       bookChanged.shelf = to
       this.setState((currentState) => ({

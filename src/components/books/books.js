@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import imageNotAvailable from '../../images/imageNotAvailable.png'
+const IMAGE_NOT_AVAILABLE = 'http://books.google.com/books/content?id=NLK2AAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
 
 export default class books extends Component {
     
@@ -15,7 +15,7 @@ export default class books extends Component {
     
     const imagem = book.imageLinks && book.imageLinks.thumbnail
     ? book.imageLinks.thumbnail
-    : imageNotAvailable;
+    : IMAGE_NOT_AVAILABLE;
 
     if (typeof this.props.booksOnShelfs !== 'undefined'){
         const bookShelf = this.getShelfOfBookOnShelf(book.id)

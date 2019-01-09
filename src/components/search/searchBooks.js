@@ -8,13 +8,14 @@ export default class SearchBooks extends Component {
   constructor(props){
     super(props)
     this.state = {
-      booksSearch: []
+      booksSearch: [],
+      searchValue: ''
     }
   }
 
-  handleChange = (e) => {
-    if(e.target.value){
-      BooksAPI.search(`${e.target.value}`)
+  searchBook = (searchValue) => {
+   if(searchValue){
+      BooksAPI.search(`${searchValue}`)
       .then((booksSearch) =>{
         if(booksSearch.length){
           this.setState(() => ({
@@ -32,6 +33,14 @@ export default class SearchBooks extends Component {
       })
     }
   }
+
+  handleChange = async (e) => {
+    const searchValue = e.target.value
+    await this.setState(() => ({
+      searchValue: searchValue
+    }))
+    this.searchBook(searchValue)
+  }
   
 
   render() {
@@ -48,7 +57,7 @@ export default class SearchBooks extends Component {
             However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
             you don't find a specific author or title. Every search is limited by search terms.
           */}
-          <input type="text" placeholder="Search by title or author" onChange={(e) => this.handleChange(e)}/>
+          <input type="text" placeholder="Search by title or author" value={this.state.searchValue} onChange={(e) => this.handleChange(e)}/>
         </div>
       </div>
       <div className="search-books-results">

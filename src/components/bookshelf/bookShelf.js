@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import Shelf from '../shelf/shelf'
 
-export default class BookShelf extends Component {
-  
-  getBooksByShelf(shelf){
-    return this.props.books.filter((book)=> book.shelf === shelf)
-  }
+const getBooksByShelf = (shelf, books) => {
+  return books.filter((book)=> book.shelf === shelf)
+}
 
-  render() {
+const BookShelf = (props) => {
     return (
       <div className="app">          
           <div className="list-books">
@@ -19,18 +17,18 @@ export default class BookShelf extends Component {
               <div>    
                 <Shelf 
                   title={'Currently Reading'}
-                  booksOfShelf={this.getBooksByShelf('currentlyReading')}
-                  moveBooks ={ this.props.moveBooks }
+                  booksOfShelf={getBooksByShelf('currentlyReading', props.books)}
+                  moveBooks ={ props.moveBooks }
                   />
                 <Shelf 
                   title={'Want to Read'} 
-                  booksOfShelf={this.getBooksByShelf('wantToRead')}
-                  moveBooks ={ this.props.moveBooks }
+                  booksOfShelf={getBooksByShelf('wantToRead', props.books)}
+                  moveBooks ={ props.moveBooks }
                   />
                 <Shelf 
                   title={'Read'} 
-                  booksOfShelf={this.getBooksByShelf('read')}
-                  moveBooks ={ this.props.moveBooks }
+                  booksOfShelf={getBooksByShelf('read', props.books)}
+                  moveBooks ={ props.moveBooks }
                   />
               </div>
             </div>
@@ -40,5 +38,6 @@ export default class BookShelf extends Component {
           </div>
       </div>
     )
-  }
 }
+
+export default BookShelf
