@@ -2,10 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Shelf from '../shelf/shelf'
 
+/**
+ ** Author: Robson Junior
+ ** Summary: Function responsavel por receber os parametros de shelfs e array de books
+ * devolvendo de forma organizada para o Component BookShelf organizar
+ * @param {string} shelf
+ * @param {Object[]} book
+ */
 const getBooksByShelf = (shelf, books) => {
   return books.filter((book)=> book.shelf === shelf)
 }
 
+/**
+ ** Author: Robson Junior
+ ** Summary: Componente stateless que monta o index do projeto
+ * organizando os books de acordo com suas shelfs
+ * @param {Object} props
+ */
 const BookShelf = (props) => {
     return (
       <div className="app">          

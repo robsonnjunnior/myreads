@@ -16,6 +16,10 @@ export default class App extends React.Component {
     }
   }
 
+  /**
+   ** Author: Robson Junior
+   ** Summary: funcao do cliclo de vida do react para setar o estado de books, com os dados da API fornecida
+   */
   async componentDidMount(){
     await BooksAPI.getAll()
       .then((books) =>{
@@ -25,6 +29,12 @@ export default class App extends React.Component {
       })
   }
 
+  /**
+   ** Author: Robson Junior
+   ** Summary: funcao responsavel por fazer a troca de shelfs e enviar o update para API
+   * @param {Object} bookChanged
+   * @param {String} to 
+   */
   handleSelectMoveBooks = (bookChanged, to) => {
     if(!this.state.books.find((value) => value.id === bookChanged.id)){
       bookChanged.shelf = to
