@@ -20,8 +20,8 @@ export default class App extends React.Component {
    ** Author: Robson Junior
    ** Summary: funcao do cliclo de vida do react para setar o estado de books, com os dados da API fornecida
    */
-  async componentDidMount(){
-    await BooksAPI.getAll()
+  componentDidMount(){
+    BooksAPI.getAll()
       .then((books) =>{
         this.setState(() => ({
           books
@@ -39,7 +39,7 @@ export default class App extends React.Component {
     if(!this.state.books.find((value) => value.id === bookChanged.id)){
       bookChanged.shelf = to
       this.setState((currentState) => ({
-        books : currentState.books.push(bookChanged)
+        books : currentState.books.concat(bookChanged)
       }))
     }else {
       this.setState((currentState) => ({
@@ -50,6 +50,7 @@ export default class App extends React.Component {
 }
 
   render() {
+    console.log('state', this.state.books)
     return (
       <div>
         <Route exact path='/' component={() => (
