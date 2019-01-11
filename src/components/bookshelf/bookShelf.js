@@ -13,6 +13,22 @@ const getBooksByShelf = (shelf, books) => {
   return books.filter((book)=> book.shelf === shelf)
 }
 
+// Objeto de shelfs pre definidas
+const Shelfs = [{
+  id: 1,
+  name: 'currentlyReading',
+  label: 'Currently Reading'
+},{
+  id: 2,
+  name: 'wantToRead',
+  label: 'Want to Read'
+},{
+  id: 3,
+  name: 'read',
+  label: 'Read'
+}]
+
+
 /**
  ** Author: Robson Junior
  ** Summary: Componente stateless que monta o index do projeto
@@ -28,21 +44,14 @@ const BookShelf = (props) => {
             </div>
             <div className="list-books-content">
               <div>    
-                <Shelf 
-                  title={'Currently Reading'}
-                  booksOfShelf={getBooksByShelf('currentlyReading', props.books)}
+                {Shelfs.map((shelf) => (
+                  <Shelf
+                  key={shelf.id}
+                  title={shelf.label}
+                  booksOfShelf={getBooksByShelf(shelf.name, props.books)}
                   moveBooks ={ props.moveBooks }
                   />
-                <Shelf 
-                  title={'Want to Read'} 
-                  booksOfShelf={getBooksByShelf('wantToRead', props.books)}
-                  moveBooks ={ props.moveBooks }
-                  />
-                <Shelf 
-                  title={'Read'} 
-                  booksOfShelf={getBooksByShelf('read', props.books)}
-                  moveBooks ={ props.moveBooks }
-                  />
+                ))}
               </div>
             </div>
             <div className="open-search">  

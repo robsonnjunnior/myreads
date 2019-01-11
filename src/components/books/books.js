@@ -3,20 +3,32 @@ const IMAGE_NOT_AVAILABLE = 'http://books.google.com/books/content?id=NLK2AAAAIA
 
 export default class books extends Component {
     
+  // Funcao responsavel por detectar a mudanca de shelf e chamar a funcao que foi passada via props
   handleChange = (e, book) => {
     this.props.moveBooks(book, e.target.value)
   }
 
+  // Verifica se o book retornado da api esta atualmente na prateleira
   getShelfOfBookOnShelf = (book) => {
     return this.props.booksOnShelfs.filter((value) => value.id === book)
   }
 
+  /**
+    ** Author: Robson Junior
+    ** Summary: Funcao responsavel por realizar o render dos books, recebidos via parametro
+    * @param {Object} book
+  */
   renderBooks = (book) => {
-    
+    // Trata os casos de livros que nao tem valor de imagens e seta uma imagem default
     const imagem = book.imageLinks && book.imageLinks.thumbnail
     ? book.imageLinks.thumbnail
     : IMAGE_NOT_AVAILABLE;
 
+    /*
+      serve para verificar se o component book esta sendo renderizado
+      no componente de BookShelf ou SearchBook, pois ambos fazem tratamento de shelfs.
+      Para isso, seta none, caso o book nao esteja na prateleira.
+    */
     if (typeof this.props.booksOnShelfs !== 'undefined'){
         const bookShelf = this.getShelfOfBookOnShelf(book.id)
   
@@ -26,7 +38,6 @@ export default class books extends Component {
           book.shelf = 'none'
         }
     }
-  
     return(
       <li key={book.id}>
       <div className="book">
